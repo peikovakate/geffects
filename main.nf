@@ -8,17 +8,19 @@ if (params.help) {
 }
 
 
-Channel.fromPath(params.samples_path)
+Channel.fromPath(params.susie_files)
     .ifEmpty { error "Cannot find any samples_path file in: ${params.samples_path}" }
     .splitCsv(header: false, sep: '\t', strip: true)
-    .map{row -> row[0] }
+    .map{row -> [row[0], row[0]] }
     .set { build_cc } 
 
 process buildComponents{
     input:
-    path(file), stageAs: file from build_cc.collect()
+    tuple val(x), path("$x") from build_cc.collect()
 
+    ouput:
+    
     """
-    ls
+    ls 
     """
 }
