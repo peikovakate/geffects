@@ -133,7 +133,7 @@ process mash_sharing {
     script:
     
     """
-    Rscript $baseDir/bin/mash_posteriors.R -e $lead_effects
+    Rscript $baseDir/bin/mash_posterior.R
     """
 }
 

@@ -1,4 +1,5 @@
 source("utils2.R")
+options(warn=-1)
 `%>%` <- magrittr::`%>%`
 
 parser <- optparse::OptionParser()
@@ -27,8 +28,8 @@ U.c    = mashr::cov_canonical(data)
 print("Compute PCA covariance matrix")
 U.pca = mashr::cov_pca(data, args$pc_number, strong)
 
-suppressWarnings({
-    print("Compute extreme deconcolution covariance matrix")
+print("Compute extreme deconcolution covariance matrix")
+suppressMessages({
     U.ed = mashr::cov_ed(data, U.pca, strong)    
 })
 
