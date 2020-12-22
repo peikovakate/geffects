@@ -1,0 +1,23 @@
+# You can use this file to create a conda environment for this pipeline:
+#   conda env create -f environment.yml
+name: nf-core-geffects-1.0dev
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - conda-forge::r-base=3.5.1
+  - conda-forge::r-dplyr
+  - conda-forge::r-plyr
+  - conda-forge::r-readr
+  - conda-forge::r-penalized
+  - conda-forge::r-optparse
+  - conda-forge::r-reshape2
+  - conda-forge::r-pheatmap
+  - conda-forge::r-ggplot2
+  - conda-forge::r-gridExtra
+  - conda-forge::r-lemon
+  - conda-forge::r-colorspace
+  - conda-forge::r-colortools
+  - conda-forge::r-cowplot
+  - conda-forge::r-data.table

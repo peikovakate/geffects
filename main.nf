@@ -8,7 +8,7 @@ if (params.help) {
 }
 
 Channel.fromPath(params.susie_files)
-    .ifEmpty { error "Cannot find any samples_path file in: ${params.samples_path}" }
+    .ifEmpty { error "Cannot find any samples_path file in: ${params.susie_files}" }
     .splitCsv(header: false, sep: '\t', strip: true)
     .map{row -> row[0]}
     .set { build_cc } 
@@ -120,7 +120,7 @@ process mash {
 }
 
 process mash_sharing {
-    time '20h'
+    time '40h'
     publishDir "${params.outdir}", mode: "copy"
 
     input:
