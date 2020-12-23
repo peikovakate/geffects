@@ -67,7 +67,7 @@ nextflow run factorization.nf -resume -profile tartu_hpc \
   --effects results/lead_effects_na.tsv \
   --factor_params data/factor_params.txt \
   --colors data/colors.txt \
-  --iter 5 
+  --iter 10
 ```
 
 Output in `results/factorization/grid_search` contains folders with matricies and `first_level_results.txt`.
@@ -82,8 +82,8 @@ nextflow run factorization.nf -resume -profile tartu_hpc \
   --factor_params data/factor_params.txt \
   --second_level \
   --colors data/colors.txt \
-  --iter 5 \
-  --runs 5
+  --iter 20 \
+  --runs 10
 ```
 
 **Mapping**
