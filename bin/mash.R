@@ -34,7 +34,7 @@ suppressMessages({
 })
 
 print("Fit the model")
-m = mashr::mash(data, U.ed, outputlevel = 1,  algorithm.version="Rcpp")
+m = mashr::mash(data, U.ed, outputlevel = 1)
 save(m, file = "mash.R")
 save(data, file = "data.R")
 

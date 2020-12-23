@@ -21,3 +21,4 @@ dependencies:
   - conda-forge::r-colortools
   - conda-forge::r-cowplot
   - conda-forge::r-data.table
+  - conda-forge::fonts-conda-ecosystem

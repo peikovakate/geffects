@@ -15,9 +15,18 @@ Channel.fromPath(params.colors)
     .ifEmpty { error "Cannot find file in: ${params.colors}" }
     .set { qtlgroup_colors }
 
-factors = Channel.of(20, 25, 30)
-alpha = Channel.of(800, 900, 1000, 1100, 1200)
-lambda = Channel.of(800, 900, 1000, 1100, 1200)
+factor_parameters = file(params.factor_params)
+allLines  = factor_parameters.readLines()
+
+// split first line to factors
+fct_list = allLines[1].split()*.toInteger()
+// split second line to alpha1 parameters
+alph_list = allLines[2].split()*.toInteger()
+lamb_list = allLines[3].split()*.toInteger()
+
+factors = Channel.fromList(fct_list)
+alpha = Channel.fromList(alph_list)
+lambda = Channel.fromList(lamb_list)
 
 process buildMatricies {
     container = "quay.io/peikova/factorization:dev"
@@ -111,7 +120,7 @@ process mapping {
     path(files) from Channel.fromPath("${params.matrix_folder}/${params.mapping_matrix}").collect()
 
     output:
-    path("*")
+    path("*.txt")
 
     script:
     """

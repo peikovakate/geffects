@@ -102,7 +102,7 @@ process similarity {
 }
 
 process mash {
-    time '20h'
+    label 'process_long'
     publishDir "${params.outdir}", mode: "copy"
 
     input:
@@ -120,7 +120,7 @@ process mash {
 }
 
 process mash_sharing {
-    time '40h'
+    label 'process_long'
     publishDir "${params.outdir}", mode: "copy"
 
     input:
@@ -128,7 +128,7 @@ process mash_sharing {
 
     output:
     path "mash_with_posteriors.R"
-    path "sharing.R"
+    path "sharing.R" into plot_sharing
     
     script:
     
@@ -137,5 +137,18 @@ process mash_sharing {
     """
 }
 
+process plot {
+    publishDir "${params.outdir}", mode: "copy"
 
-// result.subscribe { println "$it" }
+    input:
+    path(sharing) from plot_sharing
+
+    output:
+    path("sharing.tsv")
+    path("mash_sharing_heatmap.png")
+
+    script:
+    """
+    Rscript $baseDir/bin/plot_sharing.R
+    """
+}
